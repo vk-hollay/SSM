@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--配置spring创建容器时要扫描的包-->
+<!--    <context:component-scan base-package="com.hollay"></context:component-scan>-->
+
+    <!--配置sping开启注解AOP的支持(写上就支持，不写不支持)-->
+<!--    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>-->
+
+
+    <!--以上两个配置均可在SpringConfiguration类中通过注解进行配置，进而实现纯注解不使用xml的配置方式-->
+
+</beans>

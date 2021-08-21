@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hollay42.dao.UserDao">
+
+    <!--开启 user支持二技缓存-->
+    <cache/>
+
+    <!--查询所有用户，同时获取到用户下所有账户的信息(一对多，一个用户可以有多个账户)-->
+    <select id="findAll" resultType="User">
+        SELECT u.*, a.id as aid, a.uid, a.money FROM USER u LEFT OUTER JOIN account a ON u.id=a.uid;
+    </select>
+
+
+    <!--根据id查询用户信息-->
+    <select id="findById" parameterType="int" resultType="User" useCache="true">
+        select * from user where id=#{id};
+    </select>
+
+    <!--更新用户信息-->
+    <update id="updateUser" parameterType="User">
+        update user set username=#{username},address=#{address} where id=#{id};
+    </update>
+</mapper>

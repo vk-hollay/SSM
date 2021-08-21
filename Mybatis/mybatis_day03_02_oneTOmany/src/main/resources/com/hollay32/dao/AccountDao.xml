@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.hollay32.dao.AccountDao">
+
+    <!--定义封装 account和 user的 resultMap-->
+    <resultMap id="accountUserMap" type="Account">
+        <id property="id" column="aid"></id>
+        <result property="uid" column="uid"></result>
+        <result property="money" column="money"></result>
+        <!--一对一的关系映射，配置封装 user的内容-->
+        <association property="user" column="uid" javaType="User">
+            <id property="id" column="id"></id>
+            <result property="username" column="username"></result>
+            <result property="address" column="address"></result>
+            <result property="sex" column="sex"></result>
+            <result property="birthday" column="birthday"></result>
+        </association>
+    </resultMap>
+
+    <!--查询所有账户，同时还要获取到当前账户的所属用户信息（一对一，一个账户只能属于一个用户；多对一，多个账户也可以属于一个用户）-->
+    <select id="findAll" resultMap="accountUserMap">
+        SELECT u.*,a.id as aid, a.uid,a.money FROM USER u, account a WHERE u.id=a.uid;
+    </select>
+
+    <!--查询所有账户，并且带有用户名称和地址信息-->
+    <select id="findAllAccount" resultType="AccountUser">
+        SELECT a.*, u.username, u.address FROM USER u, account a WHERE u.id=a.uid;
+    </select>
+</mapper>

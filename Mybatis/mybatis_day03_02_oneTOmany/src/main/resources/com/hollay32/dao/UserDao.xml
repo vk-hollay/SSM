@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hollay32.dao.UserDao">
+
+    <!--定义 User的 resultMap-->
+    <resultMap id="userAccountMap" type="com.hollay32.domain.User">
+        <id property="id" column="id"></id>
+        <result property="username" column="username"></result>
+        <result property="sex" column="sex"></result>
+        <result property="address" column="address"></result>
+        <result property="birthday" column="birthday"></result>
+        <!--配置 user对象中 account集合的映射-->
+        <collection property="accounts" ofType="Account">
+            <id column="aid" property="id"></id>
+            <result column="uid" property="uid"></result>
+            <result column="money" property="money"></result>
+        </collection>
+    </resultMap>
+
+    <!--查询所有用户，同时获取到用户下所有账户的信息(一对多，一个用户可以有多个账户)-->
+    <select id="findAll" resultMap="userAccountMap">
+        SELECT u.*, a.id as aid, a.uid, a.money FROM USER u LEFT OUTER JOIN account a ON u.id=a.uid;
+    </select>
+
+</mapper>
