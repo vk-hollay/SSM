@@ -56,6 +56,8 @@ public class LazyLoadingTest {
     public void testUserFindAll() throws Exception {
         //6.使用代理对象执行查询所有方法
         List<User> users = userDao.findAll();
+
+        //延迟加载，需要返回数据时才加载
 //        for (User user: users) {
 //            System.out.println("------每个用户的信息---------");
 //            System.out.println(user);
@@ -69,6 +71,8 @@ public class LazyLoadingTest {
     public void testAccountFindAll() throws Exception {
         //6.使用代理对象执行查询所有方法
         List<Account> accounts = accountDao.findAll();
+
+        //延迟加载，需要返回数据时才加载
 //        for (Account account: accounts) {
 //            System.out.println("------每个账户的信息---------");
 //            System.out.println(account);

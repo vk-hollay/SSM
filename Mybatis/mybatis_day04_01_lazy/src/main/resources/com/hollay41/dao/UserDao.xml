@@ -12,7 +12,7 @@
         <result property="sex" column="sex"></result>
         <result property="address" column="address"></result>
         <result property="birthday" column="birthday"></result>
-        <!--配置 user对象中 account集合的映射-->
+        <!--配置 user对象中 account集合的一对多映射-->
         <collection property="accounts" column="id" ofType="Account" select="com.hollay41.dao.AccountDao.findAccountByUid"></collection>
     </resultMap>
 
